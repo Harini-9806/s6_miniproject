@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Canteen – Login</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .role-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); }
+    .role-tab { flex: 1; padding: 10px; border: none; background: var(--bg); cursor: pointer; font-weight: 700; font-size: 0.9rem; transition: all 0.2s; color: var(--muted); }
+    .role-tab.active { background: var(--primary); color: #fff; }
+    .register-link { text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--muted); }
+    .register-link a { color: var(--primary); font-weight: 700; text-decoration: none; }
+    .demo-hint { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #9A3412; margin-bottom: 1rem; }
+    .demo-hint strong { display: block; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+<div class="login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="logo-icon">🍽️</div>
+      <h1>Smart Canteen</h1>
+      <p>Pre-Order. Skip the Queue. Enjoy!</p>
+    </div>
+
+    <div class="role-tabs">
+      <button class="role-tab active" onclick="switchRole('student')">🎓 Student</button>
+      <button class="role-tab" onclick="switchRole('owner')">🏪 Shop Owner</button>
+    </div>
+
+    <div id="demo-hint" class="demo-hint">
+      <strong>🔑 Demo Credentials</strong>
+      Student: arjun@college.edu / student123
+    </div>
+
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" class="form-control" placeholder="Enter your email" required />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Enter your password" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-full" style="margin-top:0.5rem">
+        🔐 Login
+      </button>
+    </form>
+
+    <div id="student-register-link" class="register-link">
+      New student? <a href="student-register.html">Create Account</a>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  let currentRole = 'student';
+
+  function switchRole(role) {
+    currentRole = role;
+    document.querySelectorAll('.role-tab').forEach((t, i) => {
+      t.classList.toggle('active', (i === 0 && role === 'student') || (i === 1 && role === 'owner'));
+    });
+    const hint = document.getElementById('demo-hint');
+    const regLink = document.getElementById('student-register-link');
+    if (role === 'owner') {
+      hint.innerHTML = '<strong>🔑 Demo Credentials</strong>Owner: owner@canteen.com / owner123';
+      hint.style.background='#FFF7ED'; hint.style.borderColor='#FED7AA'; hint.style.color='#9A3412';
+      regLink.style.display = 'none';
+    } else {
+      hint.innerHTML = '<strong>🔑 Demo Credentials</strong>Student: arjun@college.edu / student123';
+      hint.style.background='#FFF7ED'; hint.style.borderColor='#FED7AA'; hint.style.color='#9A3412';
+      regLink.style.display = 'block';
+    }
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (currentRole === 'student') {
+      const user = Auth.loginStudent(email, password);
+      if (!user) { toast('Invalid email or password', 'error'); return; }
+      Auth.setSession('student', user);
+      toast('Welcome back, ' + user.name + '!', 'success');
+      setTimeout(() => window.location.href = 'student-dashboard.html', 800);
+    } else {
+      const owner = Auth.loginOwner(email, password);
+      if (!owner) { toast('Invalid owner credentials', 'error'); return; }
+      Auth.setSession('owner', owner);
+      toast('Welcome, ' + owner.name + '!', 'success');
+      setTimeout(() => window.location.href = 'owner-dashboard.html', 800);
+    }
+  }
+
+  // Redirect if already logged in
+  const s = Auth.getSession();
+  if (s.role === 'student') window.location.href = 'student-dashboard.html';
+  if (s.role === 'owner') window.location.href = 'owner-dashboard.html';
+</script>
+</body>
+</html>

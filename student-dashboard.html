@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Canteen – Student</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .main-tabs { display: flex; gap: 4px; background: var(--bg); padding: 4px; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+    .main-tab { flex: 1; padding: 10px; border: none; background: none; border-radius: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 700; color: var(--muted); transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .main-tab.active { background: var(--primary); color: #fff; box-shadow: 0 2px 10px rgba(249,115,22,0.35); }
+    .cart-count { background: var(--secondary); color: #fff; border-radius: 50%; width: 18px; height: 18px; font-size: 0.7rem; display: inline-flex; align-items: center; justify-content: center; }
+    .profile-card { background: linear-gradient(135deg, #F97316, #1C1917); color: #fff; border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .profile-card .p-name { font-size: 1.2rem; font-weight: 800; }
+    .profile-card .p-email { font-size: 0.85rem; opacity: 0.85; margin-top: 4px; }
+    .profile-card .p-stats { display: flex; gap: 1.5rem; margin-top: 1rem; }
+    .profile-card .p-stat { text-align: center; }
+    .profile-card .p-stat .val { font-size: 1.3rem; font-weight: 800; }
+    .profile-card .p-stat .lbl { font-size: 0.75rem; opacity: 0.8; }
+    .help-section { background: var(--card); border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--shadow); }
+    .help-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .help-item:last-child { border-bottom: none; }
+    .help-item .h-icon { font-size: 1.2rem; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">🍽️ Smart Canteen</div>
+  <div class="nav-right">
+    <div class="notif-wrapper">
+      <button class="notif-btn" onclick="toggleNotifHistory()" id="notif-btn">🔔
+        <span class="notif-badge" id="notif-count" style="display:none">0</span>
+      </button>
+      <div class="notif-history hidden" id="notif-dropdown">
+        <div class="notif-history-header">
+          🔔 Notifications
+          <button onclick="clearNotifs()" style="font-size:0.75rem;background:none;border:none;color:var(--primary);cursor:pointer;font-weight:700">Mark all read</button>
+        </div>
+        <div id="notif-list"></div>
+      </div>
+    </div>
+    <span class="nav-user" id="nav-user"></span>
+    <button class="btn-logout" onclick="Auth.logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="page-container">
+  <!-- MAIN TABS -->
+  <div class="main-tabs">
+    <button class="main-tab active" onclick="showTab('menu')" id="tab-menu">🍛 Menu</button>
+    <button class="main-tab" onclick="showTab('cart')" id="tab-cart">🛒 Cart <span class="cart-count" id="cart-badge" style="display:none">0</span></button>
+    <button class="main-tab" onclick="showTab('orders')" id="tab-orders">📦 My Orders</button>
+    <button class="main-tab" onclick="showTab('profile')" id="tab-profile">👤 Profile</button>
+  </div>
+
+  <!-- ── MENU TAB ── -->
+  <div id="tab-content-menu">
+    <div class="filter-bar">
+      <input type="text" class="form-control" placeholder="🔍 Search food..." id="search-input" oninput="renderMenu()" />
+      <div class="category-pills" id="category-pills"></div>
+    </div>
+    <div class="food-grid" id="food-grid"></div>
+  </div>
+
+  <!-- ── CART TAB ── -->
+  <div id="tab-content-cart" style="display:none">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">🛒 Your Cart</span>
+          <button class="btn btn-sm btn-danger" onclick="clearCart()">Clear All</button>
+        </div>
+        <div id="cart-items-list"></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:1rem">
+          <div class="card-title" style="margin-bottom:1rem">⏰ Pick a Time Slot</div>
+          <div class="slot-grid" id="slot-grid"></div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom:1rem">💳 Payment Method</div>
+          <div id="payment-options">
+            <div class="payment-option selected" id="pay-online" onclick="selectPayment('online')">
+              <div class="pay-icon">📱</div>
+              <div class="pay-info">
+                <div class="pay-title">Online Payment</div>
+                <div class="pay-desc">UPI / QR Code</div>
+              </div>
+            </div>
+            <div class="payment-option" id="pay-offline" onclick="selectPayment('offline')">
+              <div class="pay-icon">💵</div>
+              <div class="pay-info">
+                <div class="pay-title">Pay at Counter</div>
+                <div class="pay-desc">Cash on pickup</div>
+              </div>
+            </div>
+          </div>
+          <div id="upi-details" style="margin-top:1rem;background:#FFF7ED;border-radius:8px;padding:1rem;font-size:0.85rem;border:1px solid #FED7AA">
+            <div style="font-weight:700;margin-bottom:6px">📲 UPI Details</div>
+            <div>UPI ID: <strong id="owner-upi"></strong></div>
+            <div style="margin-top:6px;color:var(--muted)">Scan QR or pay to UPI ID, then click "I've Paid"</div>
+          </div>
+          <div class="cart-total-row">
+            <span>Total Amount</span>
+            <span id="cart-total-display">₹0</span>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="placeOrder()" id="place-order-btn">
+            🚀 Place Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ORDERS TAB ── -->
+  <div id="tab-content-orders" style="display:none">
+    <div class="section-title">📦 My Orders</div>
+    <div id="orders-list"></div>
+  </div>
+
+  <!-- ── PROFILE TAB ── -->
+  <div id="tab-content-profile" style="display:none">
+    <div class="profile-card" id="profile-card"></div>
+    <div class="help-section">
+      <div class="card-title" style="margin-bottom:0.5rem">❓ Help & Support</div>
+      <div class="help-item"><span class="h-icon">🎟️</span><div><strong>Token System</strong><br>Your token number is your order ID. Show it at the counter when your order is ready.</div></div>
+      <div class="help-item"><span class="h-icon">⏰</span><div><strong>Time Slots</strong><br>Choose a 15-minute pickup window to avoid crowding at the canteen.</div></div>
+      <div class="help-item"><span class="h-icon">💳</span><div><strong>Online Payment</strong><br>Pay via UPI to the owner's ID. Your token is generated after payment verification.</div></div>
+      <div class="help-item"><span class="h-icon">💵</span><div><strong>Offline Payment</strong><br>Token is generated immediately. Pay cash when you pick up your order.</div></div>
+      <div class="help-item"><span class="h-icon">📞</span><div><strong>Contact Canteen</strong><br>Call: <strong>9000000001</strong> | Email: owner@canteen.com</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOKEN MODAL -->
+<div class="modal-overlay hidden" id="token-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">🎟️ Order Confirmed!</span>
+      <button class="modal-close" onclick="closeModal('token-modal')">×</button>
+    </div>
+    <div class="token-display">
+      <div style="font-size:1rem;color:var(--muted);margin-bottom:8px">Your Token Number</div>
+      <div class="token-number" id="modal-token"></div>
+      <div class="token-label">Show this at the counter</div>
+      <div class="token-pickup" id="modal-pickup"></div>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="closeModal('token-modal');showTab('orders')">View My Orders</button>
+  </div>
+</div>
+
+<!-- PAYMENT CONFIRM MODAL -->
+<div class="modal-overlay hidden" id="payment-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">💳 Confirm Payment</span>
+      <button class="modal-close" onclick="closeModal('payment-modal')">×</button>
+    </div>
+    <div style="text-align:center;padding:1rem 0">
+      <div style="font-size:3rem;margin-bottom:1rem">📱</div>
+      <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Pay via UPI</div>
+      <div style="background:var(--bg);border-radius:10px;padding:1rem;margin-bottom:1rem">
+        <div style="font-size:0.85rem;color:var(--muted)">UPI ID</div>
+        <div style="font-size:1.2rem;font-weight:800;color:var(--primary)" id="modal-upi"></div>
+        <div style="font-size:1.5rem;font-weight:900;margin-top:8px" id="modal-amount"></div>
+      </div>
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem">Complete payment in your UPI app, then click below</div>
+    </div>
+    <button class="btn btn-success btn-full" onclick="confirmPayment()">✅ I've Paid Successfully</button>
+  </div>
+</div>
+
+<div id="notif-panel"></div>
+
+<script src="app.js"></script>
+<script src="student.js"></script>
+</body>
+</html>

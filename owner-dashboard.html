@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Canteen – Owner Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── OWNER SPECIFIC ── */
+    .main-tabs { display: flex; gap: 4px; background: var(--bg); padding: 4px; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+    .main-tab { flex: 1; padding: 10px; border: none; background: none; border-radius: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 700; color: var(--muted); transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .main-tab.active { background: var(--primary); color: #fff; box-shadow: 0 2px 10px rgba(249,115,22,0.35); }
+
+    .owner-header { background: linear-gradient(135deg, #1C1917 0%, #292524 55%, #F97316 100%); color: #fff; border-radius: var(--radius); padding: 1.6rem 2rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .owner-header h2 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.3px; }
+    .owner-header p { font-size: 0.85rem; opacity: 0.75; margin-top: 4px; }
+
+    .filter-orders { display: flex; gap: 8px; margin-bottom: 1.2rem; flex-wrap: wrap; }
+    .filter-orders .pill { font-size: 0.78rem; }
+
+    /* ── ORDER CARD (owner view) ── */
+    .o-order-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1rem; overflow: hidden; border: 1px solid var(--border); }
+    .o-order-card.pending  { border-top: 3px solid var(--warning); }
+    .o-order-card.accepted { border-top: 3px solid var(--accent); }
+    .o-order-card.preparing{ border-top: 3px solid var(--info); }
+    .o-order-card.ready    { border-top: 3px solid var(--success); }
+    .o-order-card.completed{ border-top: 3px solid var(--muted); }
+
+    .o-order-head { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem 0.6rem; flex-wrap: wrap; gap: 8px; }
+    .o-token { font-size: 1.4rem; font-weight: 900; color: var(--primary); letter-spacing: -1px; }
+    .o-student-name { font-weight: 700; font-size: 0.95rem; }
+    .o-student-meta { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+    .o-order-body { padding: 0 1.2rem 0.8rem; }
+    .o-items-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 0.8rem; }
+    .o-items-table th { text-align: left; color: var(--muted); font-weight: 600; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.4px; }
+    .o-items-table td { padding: 5px 0; border-bottom: 1px solid #f1f5f9; }
+    .o-items-table tr:last-child td { border-bottom: none; }
+    .o-total-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 2px solid var(--border); font-weight: 800; font-size: 1rem; }
+
+    .o-order-foot { background: #f8fafc; padding: 0.8rem 1.2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-top: 1px solid var(--border); }
+    .o-meta-chips { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .o-chip { font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .o-chip.slot { background: #FFF7ED; color: #9A3412; }
+    .o-chip.time { background: #F5F5F4; color: var(--muted); }
+
+    /* ── OFFLINE TOKEN BANNER ── */
+    .offline-token-banner { background: linear-gradient(135deg, #F97316, #1C1917); color: #fff; border-radius: 10px; padding: 1rem 1.2rem; margin: 0.6rem 1.2rem 0.8rem; display: flex; align-items: center; gap: 1rem; }
+    .offline-token-banner .big-token { font-size: 2.8rem; font-weight: 900; letter-spacing: -2px; line-height: 1; }
+    .offline-token-banner .token-info { flex: 1; }
+    .offline-token-banner .token-info .t-label { font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+    .offline-token-banner .token-info .t-note { font-size: 0.82rem; opacity: 0.9; margin-top: 4px; }
+
+    /* ── ONLINE PAYMENT PENDING ── */
+    .payment-pending-bar { background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 10px 1.2rem; margin: 0 1.2rem 0.8rem; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .payment-pending-bar .pp-text { font-size: 0.85rem; color: #92400e; font-weight: 600; }
+    .payment-verified-bar { background: #d1fae5; border: 1px solid #6ee7b7; border-radius: 8px; padding: 10px 1.2rem; margin: 0 1.2rem 0.8rem; font-size: 0.85rem; color: #065f46; font-weight: 600; }
+
+    /* ── PIPELINE BUTTONS ── */
+    .pipeline { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pipe-btn { padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); cursor: pointer; font-size: 0.78rem; font-weight: 700; transition: all 0.2s; color: var(--text); }
+    .pipe-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .pipe-btn.accept  { border-color: var(--success); color: var(--success); }
+    .pipe-btn.accept:hover  { background: var(--success); color: #fff; }
+    .pipe-btn.prepare { border-color: var(--warning); color: var(--warning); }
+    .pipe-btn.prepare:hover { background: var(--warning); color: #fff; }
+    .pipe-btn.ready   { border-color: var(--primary); color: var(--primary); }
+    .pipe-btn.ready:hover   { background: var(--primary); color: #fff; }
+    .pipe-btn.complete{ border-color: var(--muted);   color: var(--muted); }
+    .pipe-btn.complete:hover{ background: var(--muted);   color: #fff; }
+    .pipe-btn.verify  { border-color: var(--primary); color: var(--primary); }
+    .pipe-btn.verify:hover  { background: var(--primary); color: #fff; }
+
+    /* ── ADD ITEM FORM ── */
+    .add-item-form { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: var(--radius); padding: 1.4rem; margin-bottom: 1.5rem; }
+
+    /* ── SETTINGS ── */
+    .settings-card { background: var(--card); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); max-width: 500px; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">🏪 Smart Canteen — Owner</div>
+  <div class="nav-right">
+    <div class="notif-wrapper">
+      <button class="notif-btn" onclick="toggleNotifHistory()" id="notif-btn">🔔
+        <span class="notif-badge" id="notif-count" style="display:none">0</span>
+      </button>
+      <div class="notif-history hidden" id="notif-dropdown">
+        <div class="notif-history-header">
+          🔔 Notifications
+          <button onclick="clearNotifs()" style="font-size:0.75rem;background:none;border:none;color:var(--primary);cursor:pointer;font-weight:700">Mark all read</button>
+        </div>
+        <div id="notif-list"></div>
+      </div>
+    </div>
+    <span class="nav-user" id="nav-user"></span>
+    <button class="btn-logout" onclick="Auth.logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="page-container">
+
+  <!-- OWNER HEADER -->
+  <div class="owner-header">
+    <div>
+      <h2>🍽️ Canteen Dashboard</h2>
+      <p id="owner-subtitle">Manage student orders, menu items and track your business</p>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:0.78rem;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px">Today</div>
+      <div style="font-size:1.05rem;font-weight:800;margin-top:2px" id="today-date"></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid" id="stats-grid"></div>
+
+  <!-- MAIN TABS -->
+  <div class="main-tabs">
+    <button class="main-tab active" onclick="showTab('orders')" id="tab-orders">📋 Student Orders</button>
+    <button class="main-tab" onclick="showTab('menu')" id="tab-menu">🍛 Menu</button>
+    <button class="main-tab" onclick="showTab('analytics')" id="tab-analytics">📊 Analytics</button>
+    <button class="main-tab" onclick="showTab('settings')" id="tab-settings">⚙️ Settings</button>
+  </div>
+
+  <!-- ── ORDERS TAB ── -->
+  <div id="tab-content-orders">
+    <div class="filter-orders">
+      <button class="pill active" onclick="filterOrders('all',this)">All Orders</button>
+      <button class="pill" onclick="filterOrders('pending',this)">⏳ Pending</button>
+      <button class="pill" onclick="filterOrders('accepted',this)">✅ Accepted</button>
+      <button class="pill" onclick="filterOrders('preparing',this)">👨‍🍳 Preparing</button>
+      <button class="pill" onclick="filterOrders('ready',this)">🔔 Ready</button>
+      <button class="pill" onclick="filterOrders('completed',this)">✔️ Completed</button>
+    </div>
+    <div id="owner-orders-list"></div>
+  </div>
+
+  <!-- ── MENU TAB ── -->
+  <div id="tab-content-menu" style="display:none">
+    <div class="add-item-form">
+    <div class="card-title" style="margin-bottom:1rem;color:var(--primary)">➕ Add New Menu Item</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Item Name</label>
+          <input type="text" id="new-name" class="form-control" placeholder="e.g. Samosa" />
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="new-category" class="form-control">
+            <option>Breakfast</option>
+            <option>Lunch</option>
+            <option>Snacks</option>
+            <option>Beverages</option>
+            <option>Desserts</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Price (₹)</label>
+          <input type="number" id="new-price" class="form-control" placeholder="e.g. 25" min="1" />
+        </div>
+        <div class="form-group">
+          <label>Prep Time (min)</label>
+          <input type="number" id="new-prep" class="form-control" placeholder="e.g. 10" min="1" />
+        </div>
+      </div>
+      <div class="form-group" style="max-width:200px">
+        <label>Emoji Icon</label>
+        <input type="text" id="new-emoji" class="form-control" placeholder="e.g. 🥪" maxlength="4" />
+      </div>
+      <button class="btn btn-primary" onclick="addMenuItem()">➕ Add Item</button>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📋 All Menu Items</span>
+        <span id="menu-count" style="font-size:0.85rem;color:var(--muted)"></span>
+      </div>
+      <div id="menu-items-list"></div>
+    </div>
+  </div>
+
+  <!-- ── ANALYTICS TAB ── -->
+  <div id="tab-content-analytics" style="display:none">
+    <div class="analytics-row">
+      <div class="card">
+        <div class="card-title" style="margin-bottom:1rem">📈 Revenue (Last 7 Days)</div>
+        <div class="chart-container"><canvas id="revenue-chart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:1rem">🍛 Top Selling Items</div>
+        <div class="chart-container"><canvas id="items-chart"></canvas></div>
+      </div>
+    </div>
+    <div class="analytics-row" style="margin-top:1.5rem">
+      <div class="card">
+        <div class="card-title" style="margin-bottom:1rem">📊 Orders by Status</div>
+        <div class="chart-container"><canvas id="status-chart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:1rem">💳 Payment Methods</div>
+        <div class="chart-container"><canvas id="payment-chart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SETTINGS TAB ── -->
+  <div id="tab-content-settings" style="display:none">
+    <div class="settings-card">
+      <div class="card-title" style="margin-bottom:1.2rem">⚙️ Shop Settings</div>
+      <div class="form-group">
+        <label>Shop Name</label>
+        <input type="text" id="set-name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>UPI ID</label>
+        <input type="text" id="set-upi" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="set-phone" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>New Password <span style="color:var(--muted);font-weight:400">(leave blank to keep current)</span></label>
+        <input type="password" id="set-password" class="form-control" placeholder="New password" />
+      </div>
+      <button class="btn btn-primary" onclick="saveSettings()">💾 Save Settings</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- DELETE CONFIRM MODAL -->
+<div class="modal-overlay hidden" id="delete-modal">
+  <div class="modal" style="max-width:360px">
+    <div class="modal-header">
+      <span class="modal-title">🗑️ Delete Item</span>
+      <button class="modal-close" onclick="closeModal('delete-modal')">×</button>
+    </div>
+    <p style="margin-bottom:1.5rem;color:var(--muted)">Are you sure you want to remove this item from the menu?</p>
+    <div style="display:flex;gap:1rem">
+      <button class="btn btn-danger btn-full" onclick="confirmDelete()">Delete</button>
+      <button class="btn btn-outline btn-full" onclick="closeModal('delete-modal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="notif-panel"></div>
+
+<script src="app.js"></script>
+<script src="owner.js"></script>
+</body>
+</html>

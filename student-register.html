@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Canteen – Register</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="logo-icon">🎓</div>
+      <h1>Create Account</h1>
+      <p>Join Smart Canteen today</p>
+    </div>
+
+    <form id="register-form" onsubmit="handleRegister(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phone" class="form-control" placeholder="10-digit number" pattern="[0-9]{10}" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>College Email</label>
+        <input type="email" id="email" class="form-control" placeholder="yourname@college.edu" required />
+      </div>
+      <div class="form-group">
+        <label>Student ID / Roll Number</label>
+        <input type="text" id="rollno" class="form-control" placeholder="e.g. CS2021001" required />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password" class="form-control" placeholder="Min 6 characters" minlength="6" required />
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="confirm" class="form-control" placeholder="Repeat password" required />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full" style="margin-top:0.5rem">
+        🚀 Create Account
+      </button>
+    </form>
+
+    <div style="text-align:center;margin-top:1rem;font-size:0.85rem;color:var(--muted)">
+      Already have an account? <a href="index.html" style="color:var(--primary);font-weight:700;text-decoration:none">Login</a>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  function handleRegister(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const rollno = document.getElementById('rollno').value.trim();
+    const password = document.getElementById('password').value;
+    const confirm = document.getElementById('confirm').value;
+
+    if (password !== confirm) { toast('Passwords do not match', 'error'); return; }
+
+    const students = DB.get('students') || [];
+    if (students.find(s => s.email === email)) {
+      toast('Email already registered', 'error'); return;
+    }
+
+    const newStudent = { id: genId('S'), name, phone, email, rollno, password, wallet: 0 };
+    students.push(newStudent);
+    DB.set('students', students);
+
+    toast('Account created! Please login.', 'success');
+    setTimeout(() => window.location.href = 'index.html', 1200);
+  }
+</script>
+</body>
+</html>
