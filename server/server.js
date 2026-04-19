@@ -17,13 +17,15 @@ app.use('/api/notifications', require('./routes/notifications'));
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
 
 app.get('*', (req, res) => {
-    if (!req.path.startsWith('/api')) {
-        const filePath = path.join(__dirname, '..', req.path);
-        res.sendFile(filePath, (err) => {
-            if (err) {
-                res.sendFile(path.join(__dirname, '..', 'index.html'));
-            }
-        });
+    if (req.path.startsWith('/api')) {
+        return res.status(404).json({ error: 'Not found' });
+    }
+    const filePath = path.join(__dirname, '..', req.path);
+    const fs = require('fs');
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+        res.sendFile(filePath);
+    } else {
+        res.sendFile(path.join(__dirname, '..', 'index.html'));
     }
 });
 const PORT = process.env.PORT || 3000;
