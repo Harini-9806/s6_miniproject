@@ -1,0 +1,1205 @@
+{
+  "students": [
+    {
+      "id": "s1",
+      "name": "Arjun Kumar",
+      "email": "arjun@college.edu",
+      "phone": "9876543210",
+      "password": "$2b$10$1H05kYk2wO5WBdmbH6R.IeFMK8pe5/NFTbugiwCyPiOB0aCQPveuG",
+      "rollno": "CS2021001"
+    },
+    {
+      "id": "SMN2ZU5G4",
+      "name": "HARINI G",
+      "phone": "9345590665",
+      "rollno": "7376231BM109",
+      "email": "harini.bm23@bitsathy.ac.in",
+      "password": "$2b$10$SWHGFDwqwYA6j9f8nweGsu1f6vuFfEu8X1LeP8v4.HRDm1D1nw6mm"
+    },
+    {
+      "id": "SMN48QEE7",
+      "name": "Sowmitha",
+      "phone": "9957555813",
+      "rollno": "231BM145",
+      "email": "sowmitha@gmail.com",
+      "password": "$2b$10$zGRDf8Ao1nZgf8eNCldwpOOPzI5u1AMw3nc.u5X3b8d65lZp4OsWi"
+    }
+  ],
+  "owner": {
+    "id": "o1",
+    "name": "Ravi Canteen",
+    "email": "owner@canteen.com",
+    "password": "$2b$10$Er19eQDesgZ9uA1G6rdKiuO62SJsT60e4Wd2b/IqAuaDXtHmryZ72",
+    "upiId": "ravi@upi",
+    "phone": "9000000001"
+  },
+  "menu": [
+    {
+      "id": "M001",
+      "name": "Idly",
+      "category": "Breakfast",
+      "price": 30,
+      "prepTime": 10,
+      "emoji": "🍚",
+      "available": true
+    },
+    {
+      "id": "M002",
+      "name": "Dosa",
+      "category": "Breakfast",
+      "price": 40,
+      "prepTime": 10,
+      "emoji": "🫓",
+      "available": true
+    },
+    {
+      "id": "M003",
+      "name": "Pongal",
+      "category": "Breakfast",
+      "price": 35,
+      "prepTime": 10,
+      "emoji": "🍲",
+      "available": true
+    },
+    {
+      "id": "M004",
+      "name": "Upma",
+      "category": "Breakfast",
+      "price": 30,
+      "prepTime": 10,
+      "emoji": "🥣",
+      "available": true
+    },
+    {
+      "id": "M005",
+      "name": "Vada",
+      "category": "Breakfast",
+      "price": 20,
+      "prepTime": 8,
+      "emoji": "🍩",
+      "available": true
+    },
+    {
+      "id": "M006",
+      "name": "Chapati",
+      "category": "Lunch",
+      "price": 15,
+      "prepTime": 5,
+      "emoji": "🫓",
+      "available": true
+    },
+    {
+      "id": "M007",
+      "name": "Rice & Sambar",
+      "category": "Lunch",
+      "price": 50,
+      "prepTime": 15,
+      "emoji": "🍛",
+      "available": true
+    },
+    {
+      "id": "M008",
+      "name": "Veg Meals",
+      "category": "Lunch",
+      "price": 80,
+      "prepTime": 15,
+      "emoji": "🍱",
+      "available": true
+    },
+    {
+      "id": "M009",
+      "name": "Fried Rice",
+      "category": "Lunch",
+      "price": 70,
+      "prepTime": 15,
+      "emoji": "🍚",
+      "available": true
+    },
+    {
+      "id": "M010",
+      "name": "Noodles",
+      "category": "Lunch",
+      "price": 60,
+      "prepTime": 12,
+      "emoji": "🍜",
+      "available": true
+    },
+    {
+      "id": "M011",
+      "name": "Samosa",
+      "category": "Snacks",
+      "price": 15,
+      "prepTime": 5,
+      "emoji": "🥟",
+      "available": true
+    },
+    {
+      "id": "M012",
+      "name": "Bread Omelette",
+      "category": "Snacks",
+      "price": 35,
+      "prepTime": 8,
+      "emoji": "🍳",
+      "available": false
+    },
+    {
+      "id": "M013",
+      "name": "Sandwich",
+      "category": "Snacks",
+      "price": 40,
+      "prepTime": 8,
+      "emoji": "🥪",
+      "available": true
+    },
+    {
+      "id": "M014",
+      "name": "Tea",
+      "category": "Beverages",
+      "price": 10,
+      "prepTime": 3,
+      "emoji": "☕",
+      "available": true
+    },
+    {
+      "id": "M015",
+      "name": "Coffee",
+      "category": "Beverages",
+      "price": 15,
+      "prepTime": 3,
+      "emoji": "☕",
+      "available": true
+    },
+    {
+      "id": "M016",
+      "name": "Lassi",
+      "category": "Beverages",
+      "price": 30,
+      "prepTime": 5,
+      "emoji": "🥛",
+      "available": true
+    },
+    {
+      "id": "MMN48VWWG",
+      "name": "cream cake",
+      "category": "Desserts",
+      "price": 50,
+      "prepTime": 20,
+      "emoji": "🍰",
+      "available": true
+    },
+    {
+      "id": "MMN499AL6",
+      "name": "Burger",
+      "category": "Snacks",
+      "price": 50,
+      "prepTime": 60,
+      "emoji": "🍔",
+      "available": true
+    },
+    {
+      "id": "MMN4DZBOF",
+      "name": "Sandwich",
+      "category": "Snacks",
+      "price": 50,
+      "prepTime": 14,
+      "emoji": "🥪",
+      "available": true
+    },
+    {
+      "id": "MMN4E0JZ1",
+      "name": "Donut",
+      "category": "Snacks",
+      "price": 30,
+      "prepTime": 15,
+      "emoji": "🍩",
+      "available": true
+    },
+    {
+      "id": "MMN4E4WQ5",
+      "name": "Noodles",
+      "category": "Breakfast",
+      "price": 120,
+      "prepTime": 30,
+      "emoji": "🍜",
+      "available": true
+    },
+    {
+      "id": "MMN4EH31Q",
+      "name": "Cool drinks",
+      "category": "Beverages",
+      "price": 20,
+      "prepTime": 2,
+      "emoji": "🧃",
+      "available": true
+    },
+    {
+      "id": "MMN4EISK3",
+      "name": "Honey cake",
+      "category": "Desserts",
+      "price": 80,
+      "prepTime": 5,
+      "emoji": "🍯🍰",
+      "available": true
+    },
+    {
+      "id": "MMN4EKEA5",
+      "name": "Parottaa",
+      "category": "Breakfast",
+      "price": 25,
+      "prepTime": 15,
+      "emoji": "🥞",
+      "available": true
+    },
+    {
+      "id": "MMN4EROUC",
+      "name": "Waffles",
+      "category": "Breakfast",
+      "price": 120,
+      "prepTime": 20,
+      "emoji": "🧇",
+      "available": true
+    },
+    {
+      "id": "MMN4EUPPN",
+      "name": "TEA",
+      "category": "Beverages",
+      "price": 10,
+      "prepTime": 5,
+      "emoji": "🍽️",
+      "available": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD7522577",
+      "token": "#102",
+      "studentId": "s1",
+      "studentName": "Arjun Kumar",
+      "items": [
+        {
+          "name": "idly",
+          "qty": 1,
+          "price": 30
+        }
+      ],
+      "total": 30,
+      "payment": "offline",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "09:30–09:45",
+      "createdAt": "2026-03-23T09:18:42.577Z",
+      "completedAt": "2026-03-23T09:23:57.241Z",
+      "readyAt": "2026-03-23T09:23:55.107Z"
+    },
+    {
+      "id": "ORD7783680",
+      "token": "#101",
+      "studentId": "s1",
+      "studentName": "Arjun Kumar",
+      "items": [
+        {
+          "name": "Dosa",
+          "qty": 1,
+          "price": 40
+        },
+        {
+          "name": "Pongal",
+          "qty": 1,
+          "price": 35
+        }
+      ],
+      "total": 75,
+      "payment": "offline",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "10:30–10:45",
+      "createdAt": "2026-03-23T09:23:03.680Z",
+      "completedAt": "2026-03-23T09:23:43.575Z",
+      "readyAt": "2026-03-23T09:23:41.211Z"
+    },
+    {
+      "id": "ORD8256850",
+      "token": "#103",
+      "studentId": "s1",
+      "studentName": "Arjun Kumar",
+      "items": [
+        {
+          "name": "Rice & Sambar",
+          "qty": 1,
+          "price": 50
+        },
+        {
+          "name": "Chapati",
+          "qty": 1,
+          "price": 15
+        }
+      ],
+      "total": 65,
+      "payment": "online",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "08:30–08:45",
+      "createdAt": "2026-03-23T09:30:56.851Z",
+      "completedAt": "2026-03-23T09:31:22.738Z",
+      "readyAt": "2026-03-23T09:31:20.461Z"
+    },
+    {
+      "id": "ORD9939489",
+      "token": "#104",
+      "studentId": "SMN2ZU5G4",
+      "studentName": "HARINI G",
+      "items": [
+        {
+          "name": "Dosa",
+          "qty": 1,
+          "price": 40
+        },
+        {
+          "name": "Pongal",
+          "qty": 1,
+          "price": 35
+        },
+        {
+          "name": "Sandwich",
+          "qty": 1,
+          "price": 40
+        },
+        {
+          "name": "Upma",
+          "qty": 1,
+          "price": 30
+        },
+        {
+          "name": "Vada",
+          "qty": 1,
+          "price": 20
+        },
+        {
+          "name": "Idly",
+          "qty": 1,
+          "price": 30
+        },
+        {
+          "name": "Veg Meals",
+          "qty": 1,
+          "price": 80
+        },
+        {
+          "name": "Fried Rice",
+          "qty": 1,
+          "price": 70
+        },
+        {
+          "name": "Rice & Sambar",
+          "qty": 1,
+          "price": 50
+        },
+        {
+          "name": "Chapati",
+          "qty": 1,
+          "price": 15
+        },
+        {
+          "name": "Noodles",
+          "qty": 1,
+          "price": 60
+        },
+        {
+          "name": "Tea",
+          "qty": 1,
+          "price": 10
+        },
+        {
+          "name": "Coffee",
+          "qty": 1,
+          "price": 15
+        },
+        {
+          "name": "Bread Omelette",
+          "qty": 1,
+          "price": 35
+        },
+        {
+          "name": "Samosa",
+          "qty": 1,
+          "price": 15
+        },
+        {
+          "name": "Lassi",
+          "qty": 1,
+          "price": 30
+        }
+      ],
+      "total": 575,
+      "payment": "online",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "16:30–16:45",
+      "createdAt": "2026-03-23T09:58:59.490Z",
+      "completedAt": "2026-03-23T10:00:02.367Z",
+      "readyAt": "2026-03-23T09:59:57.595Z"
+    },
+    {
+      "id": "ORD0232323",
+      "token": "#105",
+      "studentId": "SMN2ZU5G4",
+      "studentName": "HARINI G",
+      "items": [
+        {
+          "name": "Lassi",
+          "qty": 1,
+          "price": 30
+        },
+        {
+          "name": "Coffee",
+          "qty": 1,
+          "price": 15
+        },
+        {
+          "name": "Tea",
+          "qty": 1,
+          "price": 10
+        }
+      ],
+      "total": 55,
+      "payment": "offline",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "10:15–10:30",
+      "createdAt": "2026-03-23T10:03:52.323Z",
+      "completedAt": "2026-03-23T10:06:51.261Z",
+      "readyAt": "2026-03-23T10:06:50.350Z"
+    },
+    {
+      "id": "ORD6201907",
+      "token": "#106",
+      "studentId": "s1",
+      "studentName": "Arjun Kumar",
+      "items": [
+        {
+          "name": "samosa",
+          "qty": 1,
+          "price": 20
+        },
+        {
+          "name": "Hot choclate",
+          "qty": 1,
+          "price": 200
+        },
+        {
+          "name": "Lassi",
+          "qty": 1,
+          "price": 30
+        }
+      ],
+      "total": 250,
+      "payment": "online",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "09:45–10:00",
+      "createdAt": "2026-03-23T14:30:01.908Z",
+      "completedAt": "2026-03-23T14:30:41.344Z",
+      "readyAt": "2026-03-23T14:30:35.650Z"
+    },
+    {
+      "id": "ORD6335486",
+      "token": "#107",
+      "studentId": "s1",
+      "studentName": "Arjun Kumar",
+      "items": [
+        {
+          "name": "pizza",
+          "qty": 1,
+          "price": 80
+        }
+      ],
+      "total": 80,
+      "payment": "online",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "16:30–16:45",
+      "createdAt": "2026-03-23T14:32:15.486Z",
+      "completedAt": "2026-03-23T15:35:44.094Z",
+      "readyAt": "2026-03-23T15:35:43.329Z"
+    },
+    {
+      "id": "ORD7743962",
+      "token": "#108",
+      "studentId": "s1",
+      "studentName": "Arjun Kumar",
+      "items": [
+        {
+          "name": "Idly",
+          "qty": 1,
+          "price": 30
+        },
+        {
+          "name": "Veg Meals",
+          "qty": 1,
+          "price": 80
+        },
+        {
+          "name": "Noodles",
+          "qty": 1,
+          "price": 60
+        }
+      ],
+      "total": 170,
+      "payment": "online",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "12:30–12:45",
+      "createdAt": "2026-03-24T04:49:03.962Z",
+      "completedAt": "2026-03-24T04:49:44.983Z",
+      "readyAt": "2026-03-24T04:49:39.048Z"
+    },
+    {
+      "id": "ORD2108468",
+      "token": "#109",
+      "studentId": "s1",
+      "studentName": "Arjun Kumar",
+      "items": [
+        {
+          "name": "Pongal",
+          "qty": 5,
+          "price": 35
+        },
+        {
+          "name": "Upma",
+          "qty": 1,
+          "price": 30
+        }
+      ],
+      "total": 205,
+      "payment": "online",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "16:30–16:45",
+      "createdAt": "2026-03-24T06:01:48.468Z",
+      "completedAt": "2026-03-24T08:24:02.517Z",
+      "readyAt": "2026-03-24T08:23:59.881Z"
+    },
+    {
+      "id": "ORD1778640",
+      "token": "#110",
+      "studentId": "SMN48QEE7",
+      "studentName": "Sowmitha",
+      "items": [
+        {
+          "name": "Dosa",
+          "qty": 1,
+          "price": 40
+        },
+        {
+          "name": "Pongal",
+          "qty": 1,
+          "price": 35
+        }
+      ],
+      "total": 75,
+      "payment": "online",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "08:30–08:45",
+      "createdAt": "2026-03-24T08:42:58.641Z",
+      "completedAt": "2026-03-24T08:43:07.891Z",
+      "readyAt": "2026-03-24T08:43:06.892Z"
+    },
+    {
+      "id": "ORD4350542",
+      "token": "#111",
+      "studentId": "s1",
+      "studentName": "Arjun Kumar",
+      "items": [
+        {
+          "name": "Idly",
+          "qty": 1,
+          "price": 30
+        },
+        {
+          "name": "Rice & Sambar",
+          "qty": 1,
+          "price": 50
+        },
+        {
+          "name": "Veg Meals",
+          "qty": 1,
+          "price": 80
+        },
+        {
+          "name": "Sandwich",
+          "qty": 1,
+          "price": 40
+        },
+        {
+          "name": "Burger",
+          "qty": 1,
+          "price": 50
+        },
+        {
+          "name": "Honey cake",
+          "qty": 1,
+          "price": 80
+        }
+      ],
+      "total": 330,
+      "payment": "online",
+      "paymentVerified": true,
+      "tokenGenerated": true,
+      "status": "completed",
+      "slot": "10:00–10:15",
+      "createdAt": "2026-03-24T09:25:50.544Z",
+      "completedAt": "2026-03-24T09:26:35.000Z",
+      "readyAt": "2026-03-24T09:26:33.530Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "NMN4EU9DK",
+      "userId": "s1",
+      "message": "✔️ Order #111 completed. Thank you!",
+      "type": "success",
+      "read": false,
+      "time": "2026-03-24T09:26:35.000Z"
+    },
+    {
+      "id": "NMN4EU88Q",
+      "userId": "s1",
+      "message": "🔔 Your order #111 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-24T09:26:33.530Z"
+    },
+    {
+      "id": "NMN4EU78X",
+      "userId": "s1",
+      "message": "Your order #111 is being prepared. Slot: 10:00–10:15",
+      "type": "success",
+      "read": false,
+      "time": "2026-03-24T09:26:32.241Z"
+    },
+    {
+      "id": "NMN4EU69H",
+      "userId": "s1",
+      "message": "Your order #111 has been accepted!",
+      "type": "success",
+      "read": false,
+      "time": "2026-03-24T09:26:30.965Z"
+    },
+    {
+      "id": "NMN4EU456",
+      "userId": "s1",
+      "message": "✅ Payment verified! Your token is #111. Slot: 10:00–10:15",
+      "type": "success",
+      "read": false,
+      "time": "2026-03-24T09:26:28.218Z"
+    },
+    {
+      "id": "NMN4ETB2O",
+      "userId": "o1",
+      "message": "New order from Arjun Kumar — ₹330 (online)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-24T09:25:50.544Z"
+    },
+    {
+      "id": "NMN4DL9WG",
+      "userId": "SMN48QEE7",
+      "message": "✅ Payment verified! Your token is #110. Slot: 08:30–08:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:51:36.161Z"
+    },
+    {
+      "id": "NMN4DADPV",
+      "userId": "SMN48QEE7",
+      "message": "✔️ Order ORD1778640 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:43:07.891Z"
+    },
+    {
+      "id": "NMN4DACY4",
+      "userId": "SMN48QEE7",
+      "message": "🔔 Your order ORD1778640 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-24T08:43:06.892Z"
+    },
+    {
+      "id": "NMN4DAC3G",
+      "userId": "SMN48QEE7",
+      "message": "Your order ORD1778640 is being prepared. Slot: 08:30–08:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:43:05.788Z"
+    },
+    {
+      "id": "NMN4DAADV",
+      "userId": "SMN48QEE7",
+      "message": "Your order ORD1778640 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:43:03.571Z"
+    },
+    {
+      "id": "NMN4DA6KX",
+      "userId": "o1",
+      "message": "New order from Sowmitha — ₹75 (online)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-24T08:42:58.641Z"
+    },
+    {
+      "id": "NMN4CLTXX",
+      "userId": "s1",
+      "message": "✔️ Order #109 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:24:02.517Z"
+    },
+    {
+      "id": "NMN4CLTNH",
+      "userId": "s1",
+      "message": "✔️ Order #109 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:24:02.141Z"
+    },
+    {
+      "id": "NMN4CLRWQ",
+      "userId": "s1",
+      "message": "🔔 Your order #109 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-24T08:23:59.882Z"
+    },
+    {
+      "id": "NMN4CLPQ6",
+      "userId": "s1",
+      "message": "Your order #109 is being prepared. Slot: 16:30–16:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:23:57.054Z"
+    },
+    {
+      "id": "NMN4CLNZN",
+      "userId": "s1",
+      "message": "Your order #109 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:23:54.803Z"
+    },
+    {
+      "id": "NMN4CLMWC",
+      "userId": "s1",
+      "message": "✅ Payment verified! Your token is #109. Slot: 16:30–16:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T08:23:53.389Z"
+    },
+    {
+      "id": "NMN47IX10",
+      "userId": "o1",
+      "message": "New order from Arjun Kumar — ₹205 (online)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-24T06:01:48.468Z"
+    },
+    {
+      "id": "NMN44Y907",
+      "userId": "s1",
+      "message": "✔️ Order #108 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T04:49:44.983Z"
+    },
+    {
+      "id": "NMN44Y4FC",
+      "userId": "s1",
+      "message": "🔔 Your order #108 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-24T04:49:39.048Z"
+    },
+    {
+      "id": "NMN44XVQQ",
+      "userId": "s1",
+      "message": "Your order #108 is being prepared. Slot: 12:30–12:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T04:49:27.794Z"
+    },
+    {
+      "id": "NMN44XQNQ",
+      "userId": "s1",
+      "message": "Your order #108 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T04:49:21.206Z"
+    },
+    {
+      "id": "NMN44XKIN",
+      "userId": "s1",
+      "message": "✅ Payment verified! Your token is #108. Slot: 12:30–12:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-24T04:49:13.247Z"
+    },
+    {
+      "id": "NMN44XDCQ",
+      "userId": "o1",
+      "message": "New order from Arjun Kumar — ₹170 (online)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-24T04:49:03.962Z"
+    },
+    {
+      "id": "NMN3CL526",
+      "userId": "s1",
+      "message": "✔️ Order #107 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T15:35:44.094Z"
+    },
+    {
+      "id": "NMN3CL4GX",
+      "userId": "s1",
+      "message": "🔔 Your order #107 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-23T15:35:43.329Z"
+    },
+    {
+      "id": "NMN3CL3RN",
+      "userId": "s1",
+      "message": "Your order #107 is being prepared. Slot: 16:30–16:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T15:35:42.419Z"
+    },
+    {
+      "id": "NMN3CL2M9",
+      "userId": "s1",
+      "message": "Your order #107 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T15:35:40.929Z"
+    },
+    {
+      "id": "NMN3CL0TS",
+      "userId": "s1",
+      "message": "✅ Payment verified! Your token is #107. Slot: 16:30–16:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T15:35:38.608Z"
+    },
+    {
+      "id": "NMN3ABIBI",
+      "userId": "o1",
+      "message": "New order from Arjun Kumar — ₹80 (online)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-23T14:32:15.486Z"
+    },
+    {
+      "id": "NMN3A9HOG",
+      "userId": "s1",
+      "message": "✔️ Order #106 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T14:30:41.344Z"
+    },
+    {
+      "id": "NMN3A9DAA",
+      "userId": "s1",
+      "message": "🔔 Your order #106 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-23T14:30:35.650Z"
+    },
+    {
+      "id": "NMN3A96EK",
+      "userId": "s1",
+      "message": "Your order #106 is being prepared. Slot: 09:45–10:00",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T14:30:26.732Z"
+    },
+    {
+      "id": "NMN3A928K",
+      "userId": "s1",
+      "message": "Your order #106 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T14:30:21.332Z"
+    },
+    {
+      "id": "NMN3A8VEJ",
+      "userId": "s1",
+      "message": "✅ Payment verified! Your token is #106. Slot: 09:45–10:00",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T14:30:12.475Z"
+    },
+    {
+      "id": "NMN3A8N90",
+      "userId": "o1",
+      "message": "New order from Arjun Kumar — ₹250 (online)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-23T14:30:01.908Z"
+    },
+    {
+      "id": "NMN30U73X",
+      "userId": "SMN2ZU5G4",
+      "message": "✔️ Order #105 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T10:06:51.261Z"
+    },
+    {
+      "id": "NMN30U6EM",
+      "userId": "SMN2ZU5G4",
+      "message": "🔔 Your order #105 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-23T10:06:50.350Z"
+    },
+    {
+      "id": "NMN30U5QP",
+      "userId": "SMN2ZU5G4",
+      "message": "Your order #105 is being prepared. Slot: 10:15–10:30",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T10:06:49.489Z"
+    },
+    {
+      "id": "NMN30U4TQ",
+      "userId": "SMN2ZU5G4",
+      "message": "Your order #105 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T10:06:48.302Z"
+    },
+    {
+      "id": "NMN30TYTY",
+      "userId": "SMN2ZU5G4",
+      "message": "🎟️ Token #105 generated! Pay ₹55 at counter. Slot: 10:15–10:30",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T10:06:40.534Z"
+    },
+    {
+      "id": "NMN30QD1F",
+      "userId": "o1",
+      "message": "New order from HARINI G — ₹55 (offline)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-23T10:03:52.323Z"
+    },
+    {
+      "id": "NMN30LFLR",
+      "userId": "SMN2ZU5G4",
+      "message": "✔️ Order #104 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T10:00:02.367Z"
+    },
+    {
+      "id": "NMN30LBX7",
+      "userId": "SMN2ZU5G4",
+      "message": "🔔 Your order #104 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-23T09:59:57.595Z"
+    },
+    {
+      "id": "NMN30KZSN",
+      "userId": "SMN2ZU5G4",
+      "message": "Your order #104 is being prepared. Slot: 16:30–16:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:59:41.879Z"
+    },
+    {
+      "id": "NMN30KI4M",
+      "userId": "SMN2ZU5G4",
+      "message": "Your order #104 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:59:18.982Z"
+    },
+    {
+      "id": "NMN30KFKD",
+      "userId": "SMN2ZU5G4",
+      "message": "✅ Payment verified! Your token is #104. Slot: 16:30–16:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:59:15.661Z"
+    },
+    {
+      "id": "NMN30K336",
+      "userId": "o1",
+      "message": "New order from HARINI G — ₹575 (online)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-23T09:58:59.490Z"
+    },
+    {
+      "id": "NMN2ZKKQA",
+      "userId": "s1",
+      "message": "✔️ Order #103 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:31:22.738Z"
+    },
+    {
+      "id": "NMN2ZKIZ1",
+      "userId": "s1",
+      "message": "🔔 Your order #103 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-23T09:31:20.461Z"
+    },
+    {
+      "id": "NMN2ZKGDJ",
+      "userId": "s1",
+      "message": "Your order #103 is being prepared. Slot: 08:30–08:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:31:17.095Z"
+    },
+    {
+      "id": "NMN2ZKBAC",
+      "userId": "s1",
+      "message": "Your order #103 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:31:10.500Z"
+    },
+    {
+      "id": "NMN2ZK9S7",
+      "userId": "s1",
+      "message": "✅ Payment verified! Your token is #103. Slot: 08:30–08:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:31:08.551Z"
+    },
+    {
+      "id": "NMN2ZK0R8",
+      "userId": "o1",
+      "message": "New order from Arjun Kumar — ₹65 (online)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-23T09:30:56.852Z"
+    },
+    {
+      "id": "NMN2ZB0ZD",
+      "userId": "s1",
+      "message": "✔️ Order #102 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:23:57.241Z"
+    },
+    {
+      "id": "NMN2ZAZC3",
+      "userId": "s1",
+      "message": "🔔 Your order #102 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-23T09:23:55.107Z"
+    },
+    {
+      "id": "NMN2ZAWM0",
+      "userId": "s1",
+      "message": "Your order #102 is being prepared. Slot: 09:30–09:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:23:51.576Z"
+    },
+    {
+      "id": "NMN2ZAUYR",
+      "userId": "s1",
+      "message": "Your order #102 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:23:49.443Z"
+    },
+    {
+      "id": "NMN2ZAS22",
+      "userId": "s1",
+      "message": "🎟️ Token #102 generated! Pay ₹30 at counter. Slot: 09:30–09:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:23:45.674Z"
+    },
+    {
+      "id": "NMN2ZAQFR",
+      "userId": "s1",
+      "message": "✔️ Order #101 completed. Thank you!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:23:43.575Z"
+    },
+    {
+      "id": "NMN2ZAOM4",
+      "userId": "s1",
+      "message": "🔔 Your order #101 is READY! Collect at the counter.",
+      "type": "ready",
+      "read": true,
+      "time": "2026-03-23T09:23:41.212Z"
+    },
+    {
+      "id": "NMN2ZAMWV",
+      "userId": "s1",
+      "message": "Your order #101 is being prepared. Slot: 10:30–10:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:23:39.007Z"
+    },
+    {
+      "id": "NMN2ZAL3X",
+      "userId": "s1",
+      "message": "Your order #101 has been accepted!",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:23:36.669Z"
+    },
+    {
+      "id": "NMN2ZAJFU",
+      "userId": "s1",
+      "message": "🎟️ Token #101 generated! Pay ₹75 at counter. Slot: 10:30–10:45",
+      "type": "success",
+      "read": true,
+      "time": "2026-03-23T09:23:34.506Z"
+    },
+    {
+      "id": "NMN2Z9VNK",
+      "userId": "o1",
+      "message": "New order from Arjun Kumar — ₹75 (offline)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-23T09:23:03.680Z"
+    },
+    {
+      "id": "NMN2Z4A6P",
+      "userId": "o1",
+      "message": "New order from Arjun Kumar — ₹30 (offline)",
+      "type": "order",
+      "read": true,
+      "time": "2026-03-23T09:18:42.577Z"
+    }
+  ],
+  "nextToken": 112
+}

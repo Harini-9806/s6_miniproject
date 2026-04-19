@@ -1,0 +1,1 @@
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InMxIiwibmFtZSI6IkFyanVuIEt1bWFyIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NzQ1OTExODAsImV4cCI6MTc3NTE5NTk4MH0.XVjmhv9VN8g2cgEnum8gnJLWtay-cWB2ZpdPczCkH6U","user":{"id":"s1","name":"Arjun Kumar","email":"arjun@college.edu","rollno":"CS2021001","phone":"9876543210","role":"student"}}

@@ -57,28 +57,21 @@
 
 <script src="app.js"></script>
 <script>
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim().toLowerCase();
-    const rollno = document.getElementById('rollno').value.trim();
+    const name     = document.getElementById('name').value.trim();
+    const phone    = document.getElementById('phone').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const rollno   = document.getElementById('rollno').value.trim();
     const password = document.getElementById('password').value;
-    const confirm = document.getElementById('confirm').value;
-
+    const confirm  = document.getElementById('confirm').value;
     if (password !== confirm) { toast('Passwords do not match', 'error'); return; }
-
-    const students = DB.get('students') || [];
-    if (students.find(s => s.email === email)) {
-      toast('Email already registered', 'error'); return;
-    }
-
-    const newStudent = { id: genId('S'), name, phone, email, rollno, password, wallet: 0 };
-    students.push(newStudent);
-    DB.set('students', students);
-
-    toast('Account created! Please login.', 'success');
-    setTimeout(() => window.location.href = 'index.html', 1200);
+    try {
+      const data = await api('POST', '/auth/student/register', { name, phone, email, rollno, password });
+      Auth.setSession(data.token, data.user);
+      toast('Account created! Redirecting...', 'success');
+      setTimeout(() => window.location.href = 'student-dashboard.html', 1000);
+    } catch (err) { toast(err.message, 'error'); }
   }
 </script>
 </body>

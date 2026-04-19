@@ -16,6 +16,7 @@
   </style>
 </head>
 <body>
+ 
 <div class="login-page">
   <div class="login-box">
     <div class="login-logo">
@@ -63,45 +64,40 @@
     document.querySelectorAll('.role-tab').forEach((t, i) => {
       t.classList.toggle('active', (i === 0 && role === 'student') || (i === 1 && role === 'owner'));
     });
-    const hint = document.getElementById('demo-hint');
+    const hint    = document.getElementById('demo-hint');
     const regLink = document.getElementById('student-register-link');
     if (role === 'owner') {
       hint.innerHTML = '<strong>🔑 Demo Credentials</strong>Owner: owner@canteen.com / owner123';
-      hint.style.background='#FFF7ED'; hint.style.borderColor='#FED7AA'; hint.style.color='#9A3412';
       regLink.style.display = 'none';
     } else {
       hint.innerHTML = '<strong>🔑 Demo Credentials</strong>Student: arjun@college.edu / student123';
-      hint.style.background='#FFF7ED'; hint.style.borderColor='#FED7AA'; hint.style.color='#9A3412';
       regLink.style.display = 'block';
     }
-    document.getElementById('email').value = '';
+    document.getElementById('email').value    = '';
     document.getElementById('password').value = '';
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    const email = document.getElementById('email').value.trim();
+    const email    = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
-
-    if (currentRole === 'student') {
-      const user = Auth.loginStudent(email, password);
-      if (!user) { toast('Invalid email or password', 'error'); return; }
-      Auth.setSession('student', user);
-      toast('Welcome back, ' + user.name + '!', 'success');
-      setTimeout(() => window.location.href = 'student-dashboard.html', 800);
-    } else {
-      const owner = Auth.loginOwner(email, password);
-      if (!owner) { toast('Invalid owner credentials', 'error'); return; }
-      Auth.setSession('owner', owner);
-      toast('Welcome, ' + owner.name + '!', 'success');
-      setTimeout(() => window.location.href = 'owner-dashboard.html', 800);
+    const endpoint = currentRole === 'student' ? '/auth/student/login' : '/auth/owner/login';
+    try {
+      const data = await api('POST', endpoint, { email, password });
+      Auth.setSession(data.token, data.user);
+      toast('Welcome, ' + data.user.name + '!', 'success');
+      setTimeout(() => {
+        window.location.href = currentRole === 'student' ? 'student-dashboard.html' : 'owner-dashboard.html';
+      }, 800);
+    } catch (err) {
+      toast(err.message, 'error');
     }
   }
 
   // Redirect if already logged in
-  const s = Auth.getSession();
-  if (s.role === 'student') window.location.href = 'student-dashboard.html';
-  if (s.role === 'owner') window.location.href = 'owner-dashboard.html';
+  const _u = Auth.getUser();
+  if (_u && _u.role === 'student') window.location.href = 'student-dashboard.html';
+  if (_u && _u.role === 'owner')   window.location.href = 'owner-dashboard.html';
 </script>
 </body>
 </html>

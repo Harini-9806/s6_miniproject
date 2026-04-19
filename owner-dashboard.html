@@ -6,6 +6,7 @@
   <title>Smart Canteen – Owner Dashboard</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <style>
     /* ── OWNER SPECIFIC ── */
     .main-tabs { display: flex; gap: 4px; background: var(--bg); padding: 4px; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border); }
@@ -74,6 +75,9 @@
 
     /* ── ADD ITEM FORM ── */
     .add-item-form { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: var(--radius); padding: 1.4rem; margin-bottom: 1.5rem; }
+    .emoji-pick { width: 36px; height: 36px; border: 1.5px solid var(--border); border-radius: 8px; background: #fff; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: all 0.15s; padding: 0; }
+    .emoji-pick:hover { border-color: var(--primary); background: var(--primary-light); transform: scale(1.2); }
+    .emoji-pick.selected { border-color: var(--primary); background: var(--primary-light); }
 
     /* ── SETTINGS ── */
     .settings-card { background: var(--card); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); max-width: 500px; }
@@ -172,7 +176,57 @@
       </div>
       <div class="form-group" style="max-width:200px">
         <label>Emoji Icon</label>
-        <input type="text" id="new-emoji" class="form-control" placeholder="e.g. 🥪" maxlength="4" />
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="text" id="new-emoji" class="form-control" placeholder="e.g. 🥪" maxlength="4" oninput="document.getElementById('emoji-preview').textContent=this.value||'🍽️'" />
+          <button type="button" class="btn btn-outline btn-sm" onclick="toggleEmojiPicker()">😊 Pick</button>
+          <span id="emoji-preview" style="font-size:1.8rem">🍽️</span>
+        </div>
+        <div id="emoji-picker" style="display:none;margin-top:10px;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;width:280px;box-shadow:var(--shadow)">
+          <div style="font-size:0.72rem;color:var(--muted);font-weight:700;margin-bottom:6px">BREAKFAST</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍚')">🍚</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥣')">🥣</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍳')">🍳</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥞')">🥞</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍞')">🍞</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍩')">🍩</button>
+          </div>
+          <div style="font-size:0.72rem;color:var(--muted);font-weight:700;margin-bottom:6px">LUNCH & DINNER</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍛')">🍛</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍲')">🍲</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍜')">🍜</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍱')">🍱</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥗')">🥗</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥓')">🥓</button>
+          </div>
+          <div style="font-size:0.72rem;color:var(--muted);font-weight:700;margin-bottom:6px">SNACKS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥟')">🥟</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥪')">🥪</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍕')">🍕</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍔')">🍔</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍟')">🍟</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥐')">🥐</button>
+          </div>
+          <div style="font-size:0.72rem;color:var(--muted);font-weight:700;margin-bottom:6px">BEVERAGES</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            <button type="button" class="emoji-pick" onclick="pickEmoji('☕')">☕</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍵')">🍵</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥛')">🥛</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍹')">🍹</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🥤')">🥤</button>
+          </div>
+          <div style="font-size:0.72rem;color:var(--muted);font-weight:700;margin-bottom:6px">DESSERTS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍰')">🍰</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🎂')">🎂</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍮')">🍮</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍦')">🍦</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍫')">🍫</button>
+            <button type="button" class="emoji-pick" onclick="pickEmoji('🍪')">🍪</button>
+          </div>
+        </div>
       </div>
       <button class="btn btn-primary" onclick="addMenuItem()">➕ Add Item</button>
     </div>
@@ -204,7 +258,7 @@
         <div class="chart-container"><canvas id="status-chart"></canvas></div>
       </div>
       <div class="card">
-        <div class="card-title" style="margin-bottom:1rem">💳 Payment Methods</div>
+        <div class="card-title" style="margin-bottom:1rem">💳 Payment Method (Online vs Offline)</div>
         <div class="chart-container"><canvas id="payment-chart"></canvas></div>
       </div>
     </div>

@@ -1,0 +1,1 @@
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im8xIiwibmFtZSI6IlJhdmkgQ2FudGVlbiIsInJvbGUiOiJvd25lciIsImlhdCI6MTc3NDQyODM1MCwiZXhwIjoxNzc1MDMzMTUwfQ.LtGOMT3tLmUBZjo0X8qxkaSS5hfTxXqDwvyl__qBDrs","user":{"id":"o1","name":"Ravi Canteen","email":"owner@canteen.com","upiId":"ravi@upi","phone":"9000000001","role":"owner"}}
